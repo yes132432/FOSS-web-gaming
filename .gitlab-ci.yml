@@ -1,29 +1,21 @@
-# The Docker image that will be used to build your app
-image: node:lts
-# Functions that should be executed before the build script is run
-before_script:
-  - git clone https://gitlab.com/yes132432/foss-web-gaming
-  - cd foss-web-gaming
-  - sudo apt install nodejs
-  - node test
-  - npm run start
+image: node:latest
 
 pages:
+  stage: deploy
   script:
-    - Make sure all dependencies are installed
-    - Build the production version of your application using a build tool such
-      as webpack or gulp
-    - The output of the build process will typically be a set of static files
-      that can be served by a web server. These files should be minified and
-      optimized for production to ensure the best performance.
-    - Deploy the built files to a web server or hosting platform.  Verify that
-      the production version of your application is running correctly and that
-      all features are working as expected.
+  - echo 'Deploying to GitLab Pages'
+  - apt-get update && apt-get install -y git
+  - git clone --branch=gh-pages "https://https://gitlab.com/yes132432/foss-web-gaming" public
+  - rm -rf public/*
+  - cp -r build/* public/
+  - cd public
+  - git add .
+  - git config --global user.email "cassidyaugustlee@gmail.com"
+  - git config --global user.name "yes132432"
+  - git commit -m "Automated pages deployment"
+  - git push origin gh-pages
   artifacts:
     paths:
-      # The folder that contains the files to be exposed at the Page URL
-      - public
-  rules:
-    # This ensures that only pushes to the default branch will trigger
-    # a pages deploy
-    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+    - public
+  only:
+  - master
