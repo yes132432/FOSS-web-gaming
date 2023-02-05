@@ -4,9 +4,10 @@ image: node:lts
 before_script:
   - git clone https://gitlab.com/yes132432/foss-web-gaming
   - cd foss-web-gaming
-  - Install node using your PM
-  - test it
-  - upload
+  - sudo apt install nodejs
+  - node test
+  - npm run start
+
 pages:
   script:
     - Make sure all dependencies are installed
