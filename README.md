@@ -1,4 +1,4 @@
-#FOSS Web Gaming
+FOSS Web Gaming
 
 Welcome to the FOSS Web Gaming community! Here, we discuss, create, and share web games that we make. This repository is a place for all web game enthusiasts to come together, exchange ideas, and collaborate on new projects.
 Getting Started
@@ -20,6 +20,6 @@ Here are a few resources to help you get started:
 
     The community directory contains information on how to connect with other members of the community, including links to our Slack channel and social media accounts.
 
-#Conclusion
+Conclusion
 
 We're excited to have you join us in the FOSS Web Gaming community. Whether you're an experienced web game developer or just starting out, there's a place for you here. So what are you waiting for? Let's start creating!
