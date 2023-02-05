@@ -1,13 +1,28 @@
-# You can override the included template(s) by including variable overrides
-# SAST customization: https://docs.gitlab.com/ee/user/application_security/sast/#customizing-the-sast-settings
-# Secret Detection customization: https://docs.gitlab.com/ee/user/application_security/secret_detection/#customizing-settings
-# Dependency Scanning customization: https://docs.gitlab.com/ee/user/application_security/dependency_scanning/#customizing-the-dependency-scanning-settings
-# Container Scanning customization: https://docs.gitlab.com/ee/user/application_security/container_scanning/#customizing-the-container-scanning-settings
-# Note that environment variables can be set in several places
-# See https://docs.gitlab.com/ee/ci/variables/#cicd-variable-precedence
-stages:
-- test
-sast:
-  stage: test
-include:
-- template: Security/SAST.gitlab-ci.yml
+# The Docker image that will be used to build your app
+image: node:lts
+# Functions that should be executed before the build script is run
+before_script:
+  - Clone the repository to your local machine using git
+  - Change into the repository directory using cd or however you do it on windows
+  - Install node using your PM
+  - test it
+  - upload
+pages:
+  script:
+    - Make sure all dependencies are installed
+    - Build the production version of your application using a build tool such
+      as webpack or gulp
+    - The output of the build process will typically be a set of static files
+      that can be served by a web server. These files should be minified and
+      optimized for production to ensure the best performance.
+    - Deploy the built files to a web server or hosting platform.  Verify that
+      the production version of your application is running correctly and that
+      all features are working as expected.
+  artifacts:
+    paths:
+      # The folder that contains the files to be exposed at the Page URL
+      - public
+  rules:
+    # This ensures that only pushes to the default branch will trigger
+    # a pages deploy
+    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
