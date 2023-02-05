@@ -2,8 +2,8 @@
 image: node:lts
 # Functions that should be executed before the build script is run
 before_script:
-  - Clone the repository to your local machine using git
-  - Change into the repository directory using cd or however you do it on windows
+  - git clone https://gitlab.com/yes132432/foss-web-gaming
+  - cd foss-web-gaming
   - Install node using your PM
   - test it
   - upload
